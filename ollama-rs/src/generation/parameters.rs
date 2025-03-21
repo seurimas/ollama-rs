@@ -23,7 +23,7 @@ impl Serialize for FormatType {
     }
 }
 
-impl Deserialize for FormatType {
+impl<'de> Deserialize<'de> for FormatType {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: serde::Deserializer<'de>,
@@ -32,8 +32,8 @@ impl Deserialize for FormatType {
         if s == "json" {
             Ok(FormatType::Json)
         } else {
-            let schema = serde_json::from_str::<RootSchema>(&s)
-                .map_err(serde::de::Error::custom)?;
+            let schema =
+                serde_json::from_str::<RootSchema>(&s).map_err(serde::de::Error::custom)?;
             Ok(FormatType::StructuredJson(JsonStructure { schema }))
         }
     }
