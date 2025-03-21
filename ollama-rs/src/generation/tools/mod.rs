@@ -97,8 +97,8 @@ impl ToolInfo {
         Self {
             tool_type: ToolType::Function,
             function: ToolFunctionInfo {
-                name: T::name(),
-                description: T::description(),
+                name: T::name().to_string(),
+                description: T::description().to_string(),
                 parameters,
             },
         }
@@ -112,8 +112,8 @@ enum ToolType {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 struct ToolFunctionInfo {
-    name: &'static str,
-    description: &'static str,
+    name: String,
+    description: String,
     parameters: RootSchema,
 }
 
