@@ -29,6 +29,7 @@ pub struct ChatMessageRequest {
     #[serde(default)]
     pub format: Option<FormatType>,
     /// Must be false if tools are provided
+    #[serde(default)]
     pub(crate) stream: bool,
 }
 
