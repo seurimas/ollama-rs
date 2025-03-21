@@ -79,7 +79,7 @@ impl<A: ToolGroup, B: ToolGroup> ToolGroup for (A, B) {
     }
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ToolInfo {
     #[serde(rename = "type")]
     tool_type: ToolType,
@@ -105,12 +105,12 @@ impl ToolInfo {
     }
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 enum ToolType {
     Function,
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 struct ToolFunctionInfo {
     name: &'static str,
     description: &'static str,
