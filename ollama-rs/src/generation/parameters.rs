@@ -1,6 +1,6 @@
 use schemars::{gen::SchemaSettings, schema::RootSchema};
 pub use schemars::{schema_for, JsonSchema};
-use serde::{Serialize, Serializer};
+use serde::{Serialize, Deserialize, Serializer};
 
 /// The format to return a response in
 #[derive(Debug, Clone)]
@@ -19,6 +19,22 @@ impl Serialize for FormatType {
         match self {
             FormatType::Json => serializer.serialize_str("json"),
             FormatType::StructuredJson(s) => s.schema.serialize(serializer),
+        }
+    }
+}
+
+impl Deserialize for FormatType {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        if s == "json" {
+            Ok(FormatType::Json)
+        } else {
+            let schema = serde_json::from_str::<RootSchema>(&s)
+                .map_err(serde::de::Error::custom)?;
+            Ok(FormatType::StructuredJson(JsonStructure { schema }))
         }
     }
 }
