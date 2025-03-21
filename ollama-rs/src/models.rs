@@ -60,36 +60,52 @@ pub struct ModelInfo {
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct ModelOptions {
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) mirostat: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) mirostat_eta: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) mirostat_tau: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) num_ctx: Option<u64>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) num_gqa: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) num_gpu: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) num_thread: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) repeat_last_n: Option<i32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) repeat_penalty: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) temperature: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) seed: Option<i32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) stop: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) tfs_z: Option<f32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) num_predict: Option<i32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) top_k: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
     pub(super) top_p: Option<f32>,
 }
 
